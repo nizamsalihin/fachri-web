@@ -83,8 +83,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero__title {
-    /* TODO: setup responsive font-size */
-    font-size: clamp(100px, 100vw / 2, 150px);
+    font-size: clamp(40px, 10vw, 150px);
     text-align: center;
 
     > * {
