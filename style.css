@@ -4,15 +4,25 @@
     https://www.joshwcomeau.com/css/custom-css-reset/
 */
 :root {
-    --color-white: #F4EFE6;
-    --color-dark-brown: #3E362E;
+    --color-white: #f4efe6;
+    --color-white-2: #ebe5da;
+    --color-dark-brown: #3e362e;
+    --color-soft-brown: #78706a;
 
     /* THEME COLOR */
     --color-background: var(--color-white);
+    --color-background-secondary: var(--color-white-2);
+
     --color-primary: var(--color-dark-brown);
+
     --color-text-primary: var(--color-dark-brown);
+    --color-text-secondary: var(--color-soft-brown);
 
     --font-sans: "PT Sans Narrow", sans-serif;
+    --font-sans-serif: "Inter", sans-serif;
+
+    --max-content-width: 1320px;
+    --min-content-padding: 20px;
 }
 
 *,
@@ -35,22 +45,34 @@ html {
 
 body {
     -webkit-font-smoothing: antialiased;
-    font-family: var(--font-sans);
-    font-weight: 400;
+    font: 400 16px/1.2 var(--font-sans);
     color: var(--color-text-primary);
     background-color: var(--color-background);
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
     display: block;
     max-width: 100%;
 }
 
-input, button, textarea, select {
+input,
+button,
+textarea,
+select {
     font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     overflow-wrap: break-word;
 }
 
@@ -58,12 +80,18 @@ p {
     text-wrap: pretty;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     text-wrap: balance;
     font: inherit;
 }
 
-#root, #__next {
+#root,
+#__next {
     isolation: isolate;
 }
 /* END: RESET */
@@ -86,6 +114,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* END: ANIMATION */
 
+/* START: UTILS */
+.background-secondary {
+    background-color: var(--color-background-secondary) !important;
+}
+/* END: UTILS */
+
+.container {
+    max-width: 1320px;
+    width: 100%;
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* START: HERO */
 .hero {
@@ -105,8 +146,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 
     > * {
-        white-space: wrap
-        ;
+        white-space: wrap;
     }
 }
 
@@ -117,7 +157,6 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
-    
 
     > * {
         --animation-delay: 0s;
@@ -129,3 +168,61 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 /* END: HERO */
+
+/* START: GALLERY */
+.gallery {
+    background-color: var(--color-background-secondary);
+}
+
+.gallery__container {
+    max-width: var(--max-content-width);
+    padding: var(--min-content-padding);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 60px;
+}
+
+.gallery__photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+
+    > img {
+        width: 100%;
+    }
+}
+
+.gallery__sidebar {
+    /* TODO: set sticky */
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    font: 400 12px/1.2 var(--font-sans-serif);
+    color: var(--color-text-secondary);
+}
+
+.gallery__categories {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font: 400 14px/1.2 var(--font-sans-serif);
+
+    > * {
+        position: relative;
+    }
+}
+.gallery__active {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-primary);
+    font-weight: 700;
+}
+.gallery__active::before {
+    content: ">";
+    display: block;
+    color: var(--color-text-primary);
+    font: inherit;
+}
+/* END: GALLERY */

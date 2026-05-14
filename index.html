@@ -1,37 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fachri Zikrillah</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div id="root">
-        <div class="hero">
-            <div class="hero__tiles" data-tiles="8" id="hero-tiles">
-                <!-- TODO: generate tiles using js -->
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fachri Zikrillah</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=PT+Sans+Narrow:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="root">
+            <div class="hero">
+                <div class="hero__tiles" data-tiles="8" id="hero-tiles">
+                    <!-- TODO: generate tiles using js -->
+                </div>
+                <h1 class="hero__title">
+                    <span>FACHRI</span>
+                    <span>ZIKRILLAH</span>
+                </h1>
             </div>
-            <h1 class="hero__title">
-                <span>FACHRI</span>
-                <span>ZIKRILLAH</span>
-            </h1>
-        </div>
-    </div>
 
-    <script>
-        // setup tiles automatically
-        let heroTiles = document.getElementById('hero-tiles');
-        let numTiles = +heroTiles.dataset.tiles;
-        for (let i = 0; i < numTiles; i++) {
-            let tile = document.createElement('div');
-            tile.style.setProperty('--animation-delay', `${i * 0.1}s`);
-            heroTiles.appendChild(tile);
-        }
-        heroTiles.style.animation = `hide ${numTiles * 0.1 + 0.5}s ease-out forwards`;
-    </script>
-</body>
+            <div class="container background-secondary"></div>
+            <section class="gallery">
+                <div class="gallery__container">
+                    <div class="gallery__sidebar">
+                        <div class="gallery__sidebar-title">GALLERY</div>
+                        <nav class="gallery__categories">
+                            <div>CATEGORY 1</div>
+                            <div class="gallery__active">CATEGORY 2</div>
+                            <div>CATEGORY 3</div>
+                            <div>CATEGORY 4</div>
+                        </nav>
+                    </div>
+                    <div class="gallery__photos">
+                        <img src="https://dummyimage.com/400.png/09f/fff" />
+                        <img src="https://dummyimage.com/400.png/09f/fff" />
+                        <img src="https://dummyimage.com/400.png/09f/fff" />
+                        <img src="https://dummyimage.com/400.png/09f/fff" />
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            // setup tiles automatically
+            let heroTiles = document.getElementById("hero-tiles");
+            let numTiles = +heroTiles.dataset.tiles;
+            for (let i = 0; i < numTiles; i++) {
+                let tile = document.createElement("div");
+                tile.style.setProperty("--animation-delay", `${i * 0.1}s`);
+                heroTiles.appendChild(tile);
+            }
+            heroTiles.style.animation = `hide ${numTiles * 0.1 + 0.5}s ease-out forwards`;
+        </script>
+    </body>
 </html>
