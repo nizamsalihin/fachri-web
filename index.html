@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="root">
+        <div class="hero">
+            <div class="hero__tiles" data-tiles="8" id="hero-tiles">
+                <!-- TODO: generate tiles using js -->
+            </div>
+            <h1 class="hero__title">
+                <span>FACHRI</span>
+                <span>ZIKRILLAH</span>
+            </h1>
+        </div>
+    </div>
+
+    <script>
+        // setup tiles automatically
+        let heroTiles = document.getElementById('hero-tiles');
+        let numTiles = +heroTiles.dataset.tiles;
+        for (let i = 0; i < numTiles; i++) {
+            let tile = document.createElement('div');
+            tile.style.setProperty('--animation-delay', `${i * 0.1}s`);
+            heroTiles.appendChild(tile);
+        }
+    </script>
 </body>
 </html>
