@@ -4,7 +4,15 @@
     https://www.joshwcomeau.com/css/custom-css-reset/
 */
 :root {
-    --color-background: #cdc0c0;
+    --color-white: #F4EFE6;
+    --color-dark-brown: #3E362E;
+
+    /* THEME COLOR */
+    --color-background: var(--color-white);
+    --color-primary: var(--color-dark-brown);
+    --color-text-primary: var(--color-dark-brown);
+
+    --font-sans: "PT Sans Narrow", sans-serif;
 }
 
 *,
@@ -27,6 +35,10 @@ html {
 
 body {
     -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
 }
 
 img, picture, video, canvas, svg {
@@ -66,6 +78,12 @@ h1, h2, h3, h4, h5, h6 {
         transform: translateY(-100%);
     }
 }
+
+@keyframes hide {
+    to {
+        display: none;
+    }
+}
 /* END: ANIMATION */
 
 
@@ -83,7 +101,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero__title {
-    font-size: clamp(40px, 10vw, 150px);
+    font-size: clamp(40px, 14vw, 150px);
     text-align: center;
 
     > * {
@@ -99,6 +117,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     bottom: 0;
+    
 
     > * {
         --animation-delay: 0s;
