@@ -6,6 +6,7 @@
 :root {
     --color-white: #f4efe6;
     --color-white-2: #ebe5da;
+    --color-white-3: rgb(244 239 230 / 0.6);
     --color-dark-brown: #3e362e;
     --color-soft-brown: #78706a;
 
@@ -14,9 +15,11 @@
     --color-background-secondary: var(--color-white-2);
 
     --color-primary: var(--color-dark-brown);
+    --color-primary-foreground: var(--color-white);
 
     --color-text-primary: var(--color-dark-brown);
     --color-text-secondary: var(--color-soft-brown);
+    --color-muted: var(--color-white-3);
 
     --font-sans: "PT Sans Narrow", sans-serif;
     --font-sans-serif: "Inter", sans-serif;
@@ -117,6 +120,10 @@ h6 {
 /* START: UTILS */
 .background-secondary {
     background-color: var(--color-background-secondary) !important;
+}
+
+.text-primary-foreground {
+    color: var(--color-primary-foreground) !important;
 }
 /* END: UTILS */
 
@@ -226,3 +233,98 @@ h6 {
     font: inherit;
 }
 /* END: GALLERY */
+
+/* START: FOOTER */
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    padding: 40px 20px;
+    text-align: center;
+    padding: 64px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.footer__sosmed {
+    margin-bottom: 20px;
+    color: var(--color-muted);
+    display: flex;
+    justify-content: flex-start;
+    gap: 24px;
+}
+
+.footer__link {
+    font: 400 14px/1.2 var(--font-sans-serif);
+    text-decoration: none;
+
+    &,
+    &:visited {
+        color: var(--color-muted);
+    }
+
+    &:hover {
+        color: var(--color-primary-foreground)
+    }
+}
+
+.footer__sosmed-email {
+    font: 400 14px/1.2 var(--font-sans-serif);
+    color: var(--color-white);
+}
+
+.footer__sosmed-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+
+    img {
+        height: 20px;
+        aspect-ratio: 1;
+    }
+
+    > * {
+        padding: 10px;
+        color: var(--color-muted);
+        background-color: var(--color-background-secondary);
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.footer__nav {
+    display: flex;
+    gap: 24px;
+
+    > * {
+        text-decoration: none;
+
+        &,
+        &:visited {
+            color: var(--color-muted);
+        }
+
+        &:hover {
+            color: var(--color-primary-foreground)
+        }
+    }
+}
+
+.footer__email {
+    font: 400 14px/1.2 var(--font-sans-serif);
+    text-decoration: none;
+
+    &,
+    &:visited {
+        color: var(--color-muted);
+    }
+
+    &:hover {
+        color: var(--color-primary-foreground)
+    }
+}
+/* END: FOOTER */
