@@ -14,6 +14,32 @@
     }
 }
 
+@keyframes clip-in {
+  from {
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+  }
+  to {
+    clip-path: polygon(40.45% 26.5%, 59.55% 26.5%, 59.55% 73.5%, 40.45% 73.5%);
+  }
+}
+
+@keyframes clip-hold {
+  from {
+    clip-path: polygon(40.45% 26.5%, 59.55% 26.5%, 59.55% 73.5%, 40.45% 73.5%);
+  }
+  to {
+    clip-path: polygon(39.25% 23.5%, 60.75% 23.5%, 60.75% 76.5%, 39.25% 76.5%);
+  }
+}
+
+@keyframes clip-expand {
+  from {
+    clip-path: polygon(39.25% 23.5%, 60.75% 23.5%, 60.75% 76.5%, 39.25% 76.5%);
+  }
+  to {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
 /*
     START: RESET
     Josh's Custom CSS Reset (with customization)
@@ -282,7 +308,7 @@ h6 {
     }
 
     &:hover {
-        color: var(--color-primary-foreground)
+        color: var(--color-primary-foreground);
     }
 }
 
@@ -325,7 +351,7 @@ h6 {
         }
 
         &:hover {
-            color: var(--color-primary-foreground)
+            color: var(--color-primary-foreground);
         }
     }
 }
@@ -340,16 +366,38 @@ h6 {
     }
 
     &:hover {
-        color: var(--color-primary-foreground)
+        color: var(--color-primary-foreground);
     }
 }
 /* END: FOOTER */
-
 
 /* START about-ME */
 .about-me {
     position: relative;
     isolation: isolate;
+    background-color: black;
+}
+
+.clip-sequence {
+  animation:
+    clip-in     0.75s cubic-bezier(1, 0.327, 0.301, 0.998) forwards,
+    clip-hold   0.25s  linear 0.75s forwards,
+    clip-expand 0.75s cubic-bezier(1, 0.327, 0.301, 0.998) 1s forwards;
+}
+
+.about-me__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    transform-origin: 50% 50%;
+}
+
+.about-me__content {
+    position: relative;
+    z-index: 2;
 }
 
 .about-me__container {
@@ -367,7 +415,7 @@ h6 {
     transform: translateY(-50%);
     font: 400 100px/1.2 var(--font-sans-serif);
     color: var(--color-white);
-
+    z-index: 1;
 }
 
 .about-me__desc {
@@ -389,8 +437,6 @@ h6 {
 }
 
 .about-me__background {
-    --animation-timing: .75s;
-    --animation-timing-function: cubic-bezier(1, 0.327, 0.301, 0.998);
     position: absolute;
     top: 0;
     left: 0;
@@ -398,10 +444,8 @@ h6 {
     height: 100%;
     min-height: 100vh;
     object-fit: cover;
-    transform: scale(1.72);
     transform-origin: 50% 50%;
-    animation: scaleDown1 var(--animation-timing) var(--animation-timing-function) forwards var(--animation-timing),
-               scaleDown2 var(--animation-timing) var(--animation-timing-function) forwards calc(2 * var(--animation-timing));
+    will-change: transform clip-path;
 }
 /* END about-ME */
 
@@ -419,7 +463,6 @@ h6 {
         grid-template-columns: 1fr;
     }
 }
-
 
 .me__section {
     display: flex;
@@ -454,12 +497,12 @@ h6 {
 }
 /* END: ME */
 
-
 /* START: AWARD */
 .award {
     display: grid;
-    grid-template-areas: 'title year'
-                         'desc desc';
+    grid-template-areas:
+        "title year"
+        "desc desc";
     grid-template-columns: 1fr auto;
     gap: 8px;
 }
