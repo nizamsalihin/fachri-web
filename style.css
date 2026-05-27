@@ -548,6 +548,7 @@ h6 {
 .cta__title {
     font: bold 48px/1.2 var(--font-sans-serif);
     color: var(--color-text-primary);
+    text-align: center;
 }
 
 .cta__desc {
@@ -556,14 +557,76 @@ h6 {
     margin-bottom: 10px;
 }
 
-.cta__button {
-    padding: 12px 24px;
-    background-color: var(--color-background);
-    color: var(--color-background-foreground);
-    border: 1px solid var(--color-background-foreground);
+.cta__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
 
+/* ── Primary button — lens slide ── */
+.cta__button {
+    position: relative;
+    display: inline-block;
+    width: 192px;
+    height: 48px;
+    overflow: hidden;
+
+    border: 1px solid var(--color-background-foreground);
     border-radius: 4px;
-    font: 400 14px/1.2 var(--font-sans-serif);
+    text-decoration: none;
     cursor: pointer;
+}
+
+.cta__button-track {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta__button-row {
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    font: 400 14px/1.2 var(--font-sans-serif);
+}
+
+.cta__button-row:first-child {
+    color: var(--color-background-foreground);
+}
+
+.cta__button-row:last-child {
+    color: var(--color-background);
+    background-color: var(--color-background-foreground);
+}
+
+.cta__button:hover .cta__button-track {
+    transform: translateY(-100%);
+}
+
+/* ── Secondary — subtle text link ── */
+.cta__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    font: 400 13px/1.2 var(--font-sans-serif);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.cta__link:hover {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-text-primary);
 }
 /* END: CTA */
