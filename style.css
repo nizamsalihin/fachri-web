@@ -1,3 +1,19 @@
+@keyframes scaleDown1 {
+    to {
+        transform: scale(1.35);
+    }
+}
+
+@keyframes scaleDown2 {
+    from {
+        transform: scale(1.35);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
 /*
     START: RESET
     Josh's Custom CSS Reset (with customization)
@@ -373,6 +389,8 @@ h6 {
 }
 
 .about-me__background {
+    --animation-timing: .75s;
+    --animation-timing-function: cubic-bezier(1, 0.327, 0.301, 0.998);
     position: absolute;
     top: 0;
     left: 0;
@@ -380,6 +398,10 @@ h6 {
     height: 100%;
     min-height: 100vh;
     object-fit: cover;
+    transform: scale(1.72);
+    transform-origin: 50% 50%;
+    animation: scaleDown1 var(--animation-timing) var(--animation-timing-function) forwards var(--animation-timing),
+               scaleDown2 var(--animation-timing) var(--animation-timing-function) forwards calc(2 * var(--animation-timing));
 }
 /* END about-ME */
 
