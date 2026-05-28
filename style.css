@@ -7,14 +7,18 @@
 
 @keyframes scaleDown1 {
     to {
-        transform: scale(1.35);
+        transform: scale(1.7);
     }
 }
 
-@keyframes scaleDown2 {
-    from {
-        transform: scale(1.35);
+@keyframes scaledown-hold {
+    to {
+        transform: scale(1.5);
     }
+
+}
+
+@keyframes scaleDown2 {
 
     to {
         transform: scale(1);
@@ -489,6 +493,11 @@ h6 {
     object-fit: cover;
     transform-origin: 50% 50%;
     will-change: transform clip-path;
+    transform: scale(2.4);
+    animation:
+        scaleDown1 0.75s cubic-bezier(1, 0.327, 0.301, 0.998) forwards,
+        scaleDownHold 0.25s ease-in-out 0.75s forwards,
+        scaleDown2 0.75s cubic-bezier(1, 0.327, 0.301, 0.998) 1s forwards;
 }
 /* END about-ME */
 
