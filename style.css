@@ -1,3 +1,10 @@
+
+@property --cropped-text-reveal {
+  syntax: '<percentage>';
+  initial-value: 0%;
+  inherits: false;
+}
+
 @keyframes scaleDown1 {
     to {
         transform: scale(1.35);
@@ -39,6 +46,20 @@
     to {
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes croppedText {
+    to { --cropped-text-reveal: 100%; }
 }
 /*
     START: RESET
@@ -386,6 +407,12 @@ h6 {
         clip-expand 0.75s cubic-bezier(1, 0.327, 0.301, 0.998) 1s forwards;
 }
 
+.cropped-text-animation {
+    animation: croppedText 0.75s ease-in-out forwards 1.75s;
+    color: transparent;
+    background-clip: text;
+}
+
 .about-me__overlay {
     position: absolute;
     top: 0;
@@ -435,6 +462,21 @@ h6 {
 
 .about-me__role {
     font: 400 24px/1.2 var(--font-sans-serif);
+}
+
+.about-me__text-reveal {
+    color: transparent;
+    background:
+        linear-gradient(
+            to top,
+            transparent 0,
+            transparent calc(100% - var(--cropped-text-reveal)),
+            var(--color-white) calc(100% - var(--cropped-text-reveal))
+        );
+    background-clip: text;
+    animation:
+        slideIn 0.75s ease-in-out forwards 1.75s,
+        croppedText 0.75s ease-in-out forwards 1.75s;
 }
 
 .about-me__background {
@@ -622,7 +664,9 @@ h6 {
     border-bottom: 1px solid transparent;
     padding-bottom: 1px;
 
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .cta__link:hover {
