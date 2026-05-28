@@ -31,7 +31,7 @@
         </div>
     </section>
 
-    <section class="me">
+    <section class="me" style="display: none;" id="me">
         <div class="me__section">
             <div class="me__label" data-aos="fade-up">ABOUT ME</div>
             <div class="me__title" data-aos="fade-up" data-aos-delay="100">
@@ -70,6 +70,21 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
+    </script>
+
+    <script>
+        window.scrollTo(0, 0);
+        document.body.style.overflow = 'hidden';
+
+        const lockTouch = (e) => e.preventDefault();
+        document.addEventListener('touchmove', lockTouch, { passive: false });
+
+        setTimeout(() => {
+            document.body.style.overflow = '';
+            document.removeEventListener('touchmove', lockTouch);
+
+            document.getElementById('me').style = '';
+        }, 2500);
     </script>
 </body>
 </html>
