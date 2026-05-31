@@ -68,9 +68,6 @@
     </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 
     <script>
         window.scrollTo(0, 0);
@@ -84,6 +81,7 @@
             document.removeEventListener('touchmove', lockTouch);
 
             document.getElementById('me').style = '';
+            AOS.init();
         }, 2500);
     </script>
 </body>
