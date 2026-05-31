@@ -1,8 +1,37 @@
-
 @property --cropped-text-reveal {
-  syntax: '<percentage>';
-  initial-value: 0%;
-  inherits: false;
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+
+@property --photo-translate-x-shift {
+    syntax: "<length>";
+    initial-value: 0px;
+    inherits: false;
+}
+
+@property --photo-translate-x {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+
+@property --photo-translate-y {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+
+@property --photo-left {
+    syntax: "<percentage>";
+    initial-value: 0%;
+    inherits: false;
+}
+
+@property --photo-rotate {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
 }
 
 @keyframes scaleDown1 {
@@ -15,11 +44,9 @@
     to {
         transform: scale(1.5);
     }
-
 }
 
 @keyframes scaleDown2 {
-
     to {
         transform: scale(1);
     }
@@ -63,7 +90,9 @@
 }
 
 @keyframes croppedText {
-    to { --cropped-text-reveal: 100%; }
+    to {
+        --cropped-text-reveal: 100%;
+    }
 }
 /*
     START: RESET
@@ -94,6 +123,7 @@
 
     --max-content-width: 1320px;
     --min-content-padding: 20px;
+    --rounded-corner: 16px;
 }
 
 *,
@@ -470,13 +500,12 @@ h6 {
 
 .about-me__text-reveal {
     color: transparent;
-    background:
-        linear-gradient(
-            to top,
-            transparent 0,
-            transparent calc(100% - var(--cropped-text-reveal)),
-            var(--color-white) calc(100% - var(--cropped-text-reveal))
-        );
+    background: linear-gradient(
+        to top,
+        transparent 0,
+        transparent calc(100% - var(--cropped-text-reveal)),
+        var(--color-white) calc(100% - var(--cropped-text-reveal))
+    );
     background-clip: text;
     animation:
         slideIn 0.75s ease-in-out forwards 1.75s,
@@ -684,3 +713,143 @@ h6 {
     border-bottom-color: var(--color-text-primary);
 }
 /* END: CTA */
+
+/* START: PHOTOS */
+.photos {
+    height: 100vh;
+    background-color: var(--color-background-secondary);
+    overflow: hidden;
+}
+
+.photos__container {
+    max-width: var(--max-content-width);
+    padding: var(--min-content-padding);
+    margin: 0 auto;
+    height: 100%;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 64px;
+}
+
+.photos__title {
+    font: 400 48px/1.2 var(--font-sans);
+    color: var(--color-text-primary);
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.photos__cards {
+    display: flex;
+    gap: 10px;
+    position: relative;
+}
+
+@keyframes photoSlideIn {
+    0% {
+        left: 50%;
+        transform: translate(-50%, -50%) translateY(100%) rotate(-30deg);
+    }
+
+    50% {
+        left: calc(50% - var(--photo-translate-x-shift, 0px));
+        transform: translate(-50%, -50%) translateY(0) rotate(-9deg);
+    }
+
+    100% {
+        left: var(--photo-left, 50%);
+        transform: translate(var(--photo-translate-x, 0%), -50%) translateY(var(--photo-translate-y, 0%)) rotate(var(--photo-rotate, 0deg));
+    }
+}
+
+.photos__card {
+    position: absolute;
+    width: calc(100vw / 6);
+    aspect-ratio: 1 / 1.5;
+    cursor: pointer;
+    isolation: isolate;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: photoSlideIn 1.5s cubic-bezier(0.85, 0.09, 0.15, 0.91) forwards;
+
+    &:nth-child(1) {
+        --photo-translate-x: 0%;
+        --photo-left: 0%;
+        --photo-rotate: -12deg;
+        --photo-translate-x-shift: 50px;
+    }
+
+    &:nth-child(2) {
+        --photo-translate-x: 20%;
+        --photo-left: 13.67%;
+        --photo-rotate: -7.2deg;
+        --photo-translate-x-shift: 40px;
+    }
+
+    &:nth-child(3) {
+        --photo-translate-x: 40%;
+        --photo-translate-y: -12%;
+        --photo-left: 27.33%;
+        --photo-rotate: -2.4deg;
+        --photo-translate-x-shift: 30px;
+    }
+
+    &:nth-child(4) {
+        --photo-translate-x: 60%;
+        --photo-translate-x-shift: 20px;
+        --photo-left: 40%;
+        --photo-rotate: 2.4deg;
+    }
+
+    &:nth-child(5) {
+        --photo-translate-x: 65%;
+        --photo-translate-y: -5%;
+        --photo-left: 53.67%;
+        --photo-rotate: 7.2deg;
+        --photo-translate-x-shift: 10px;
+    }
+
+    &:nth-child(6) {
+        --photo-translate-x: 100%;
+        --photo-left: 63.33%;
+        --photo-rotate: 12deg;
+        --photo-translate-x-shift: 0px;
+    }
+
+    > img {
+        position: relative;
+        border-radius: var(--rounded-corner);
+        z-index: 2;
+        height: 100%;
+    }
+
+    &:hover {
+        .photos__card-title {
+            transform: translate(-50%, calc(-100% - 12px));
+            opacity: 1;
+        }
+    }
+}
+
+.photos__card-title {
+    font: 400 14px/1.2 var(--font-sans-serif);
+    color: var(--color-primary-foreground);
+    background-color: var(--color-primary);
+    border-radius: 999999px;
+    padding: 9px 18px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0);
+    transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1;
+}
+/* END: PHOTOS */
